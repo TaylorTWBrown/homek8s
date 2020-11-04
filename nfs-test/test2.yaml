@@ -13,4 +13,4 @@ spec:
   - name: nfs-rw
     nfs:
       server: 192.168.1.103
-      path: "/Plex"
+      path: "/Plex" 
