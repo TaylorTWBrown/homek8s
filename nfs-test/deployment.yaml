@@ -26,12 +26,12 @@ spec:
       volumes:
       - name: nfs
         persistentVolumeClaim:
-          claimName: nfs
+          claimName: nfs-pvc
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs
+  name: nfs-pv
 spec:
   capacity:
     storage: 1Gi
@@ -39,7 +39,7 @@ spec:
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Recycle
-  storageClassName: nfs
+  storageClass: nfs
   nfs:
     server: 192.168.1.103
     path: "/Plex"
@@ -47,8 +47,12 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nfs
+  name: nfs-pvc
+storageClassName: nfs
 spec:
+  dataSource:
+    name: nfs-pv
+    kind: PersistenVolume
   accessModes:
     - ReadWriteMany
   resources:
