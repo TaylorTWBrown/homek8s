@@ -5,7 +5,12 @@ metadata:
 spec:
   containers:
   - name: nfspd-rw
-    image: kubernetes/pause
+    image: busybox
+    command:
+    - sh
+    - -c
+    - 'while true; do date > /mnt/index.html; hostname >> /mnt/index.html; sleep $(($RANDOM % 5 + 5)); done'
+    imagePullPolicy: IfNotPresent
     volumeMounts:
     - mountPath: "/mnt/nfspd"
       name: nfs-rw
