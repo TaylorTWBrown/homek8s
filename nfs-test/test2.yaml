@@ -4,11 +4,11 @@ metadata:
   name: nfspd
 spec:
   containers:
-  - name: iscsipd-rw
+  - name: nfspd-rw
     image: kubernetes/pause
     volumeMounts:
-    - mountPath: "/mnt/iscsipd"
-      name: iscsipd-rw
+    - mountPath: "/mnt/nfspd"
+      name: nfspd-rw
   volumes:
   - name: nfs-rw
     nfs:
